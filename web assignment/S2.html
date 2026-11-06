@@ -125,11 +125,11 @@
       var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-      // Sort forecasts in ascending order from earliest date to latest date
+      // Sort forecasts in descending order from latest date to earliest date
       weatherObj.weather.sort(function(a, b) {
         var dateA = new Date(parseInt(a.year), parseInt(a.month) - 1, parseInt(a.date));
         var dateB = new Date(parseInt(b.year), parseInt(b.month) - 1, parseInt(b.date));
-        return dateA - dateB; // Earliest dates appear at the top of the table
+        return dateB - dateA; // Latest dates appear at the top of the table
       });
 
       // Build the table markup string starting with the title header
@@ -161,10 +161,10 @@
             html += "<td>";
             html += "<div class='weather-container'>";
             
-            // Temperature ordered lowest to highest at the top of the cell
-            html += "<div class='temp-range'>" + item.lowest + "° - " + item.highest + "°</div>";
+            // Temperature ordered highest to lowest
+            html += "<div class='temp-range'>" + item.highest + "° - " + item.lowest + "°</div>";
             
-            // Weather icon loaded dynamically from the 'A2 Resources' folder using .jpeg format
+            // Weather icon loaded from the 'A2 Resources' folder using .jpeg format
             html += "<img class='weather-icon' src='A2 Resources/" + item.overallCode + ".jpeg' alt='" + item.overallCode + "' />";
             
             // Weather description text at the bottom with its assigned condition color class
